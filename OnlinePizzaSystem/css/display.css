@@ -1,0 +1,14 @@
+@CHARSET "ISO-8859-1";
+.btn {
+	background-color: #ff4f4f;
+	border: 1px solid rgba(0,0,0,.1);
+	color: rgb(255,255,255);
+	
+	padding: .55em .9em;
+	transition: all 400ms ease;	
+}
+
+.btn:hover {
+		background-color: #1bc5b3;
+		cursor: pointer;
+	}

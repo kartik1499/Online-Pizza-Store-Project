@@ -1,0 +1,776 @@
+@CHARSET "ISO-8859-1";
+
+/*
+Name: Sliding Login Panel with jQuery 1.3.2
+Author: Jeremie Tisseau
+Author URI: http://web-kreation.com/
+Date: March 26, 2009
+Version: 1.0
+*/
+
+/***** clearfix *****/
+.clear {clear: both;height: 0;line-height: 0;}
+.clearfix:after {content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.clearfix {display: inline-block;}
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+.clearfix {height: 1%;}
+.clearfix {display: block;}
+
+/* Panel Tab/button */
+.tab {
+  	background: url(../images/tab_b.png) repeat-x 0 0;
+	height: 42px;
+	position: relative;
+    top: 0;
+    z-index: 999;
+}
+
+.tab ul.login {
+	display: block;
+	position: relative;
+  	float: right;
+  	clear: right;
+  	height: 42px;
+	width: auto;
+  	font-weight: bold;
+	line-height: 42px;
+	margin: 0;
+	right: 150px;
+  	color: white;
+  	font-size: 80%;
+	text-align: center;
+}
+
+.tab ul.login li.left {
+  	background: url(../images/tab_l.png) no-repeat left 0;
+  	height: 42px;
+	width: 30px;
+	padding: 0;
+	margin: 0;
+  	display: block;
+	float: left;
+}
+
+.tab ul.login li.right {
+  	background: url(../images/tab_r.png) no-repeat left 0;
+  	height: 42px;
+	width: 30px;
+	padding: 0;
+	margin: 0;
+  	display: block;
+	float: left;
+}
+
+.tab ul.login li {
+ 	text-align: left;
+  	padding: 0 6px;
+	display: block;
+	float: left;
+	height: 42px;
+  	background: url(../images/tab_m.png) repeat-x 0 0;
+}
+
+.tab ul.login li a {
+	color: #15ADFF;
+}
+
+.tab ul.login li a:hover {
+	color: white;
+}
+
+
+
+.tab a.open, .tab a.close {
+	height: 20px;
+	line-height: 20px !important;
+	padding-left: 30px !important;
+	cursor: pointer;
+	display: block;
+	width: 150px;
+	position: relative;
+	top: 11px;
+}
+
+.tab a.open {background: url(../images/bt_open.png) no-repeat left 0;}
+.tab a.close {background: url(../images/bt_close.png) no-repeat left 0;}
+.tab a:hover.open {background: url(../images/bt_open.png) no-repeat left -19px;}
+.tab a:hover.close {background: url(../images/bt_close.png) no-repeat left -19px;}
+
+/* sliding panel */
+#toppanel {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#panel {
+	width: 100%;
+	height: 300px;	
+	/* background: #ff4f4f;  this is for pink color*/
+	/* background: lightskyblue; */
+	background : #701827;
+	overflow: hidden;
+	position: relative;
+	z-index: 3;
+	display: none;
+}
+
+#panel h1 {
+	font-size: 1.6em;
+	padding: 5px 0 10px;
+	margin: 0;
+	color: white;
+}
+
+#panel h2{
+	font-size: 1.2em;
+	padding: 10px 0 5px;
+	margin: 0;
+	color: white;
+}
+
+#panel p {
+	margin: 5px 0;
+	padding: 0;
+}
+
+#panel a {
+	text-decoration: none;
+	color: #15ADFF;
+}
+
+#panel a:hover {
+	color: white;
+}
+
+#panel a-lost-pwd {
+	display: block;
+	float: left;
+}
+
+#panel .content {
+	width: 960px;
+	margin: 0 auto;
+	padding-top: 15px;
+	text-align: left;
+	font-size: 0.85em;
+}
+
+#panel .content .left {
+	width: 320px;
+	float: left;
+	padding: 0 15px;
+	border-left: 1px solid #333;
+}
+
+#panel .content .right {
+	border-right: 1px solid #333;
+}
+
+#panel .content form {
+	margin: 0 0 10px 0;
+}
+
+#panel .content label {
+	float: left;
+	padding-top: 8px;
+	clear: both;
+	width: 280px;
+	display: block;
+}
+
+#panel .content input.field {
+	border: 1px #1A1A1A solid;
+	background: white;
+	margin-right: 5px;
+	margin-top: 4px;
+	width: 200px;
+	color: white;
+	height: 16px;
+}
+
+#panel .content input:focus.field {
+	background: #545454;
+}
+
+/* BUTTONS */
+/* Login and Register buttons */
+#panel .content input.bt_login,
+#panel .content input.bt_register {
+	display: block;
+	float: left;
+	clear: left;
+	height: 24px;
+	text-align: center;
+	cursor: pointer;
+	border: none;
+	font-weight: bold;
+	margin: 10px 0;
+}
+
+#panel .content input.bt_login {
+	width: 74px;
+	background: transparent url(../images/bt_login.png) no-repeat 0 0;
+}
+
+#panel .content input.bt_register {
+	width: 94px;
+	color: white;
+	background: transparent url(../images/bt_register.png) no-repeat 0 0;
+}
+
+#panel .lost-pwd {
+	display: block;
+	float:left;
+	clear: right;
+	padding: 15px 5px 0;
+	font-size: 0.95em;
+	text-decoration: underline;
+	color : lightblue;
+}
+
+
+
+
+
+
+
+
+/*
+*	RESET
+*/
+*{
+	box-sizing: border-box;
+	margin: 0;
+	outline: none;
+	padding: 0;
+}
+
+*:after,
+*:before {
+	box-sizing: border-box;
+}
+
+
+
+#closepopup.close {
+	background-color: rgb(204,204,204);
+	border-radius: 50%;
+	display: block;
+	padding: .2em .5em;
+	position: absolute;
+	top: 1.25rem;
+	transition: all 400ms ease;
+	right: 1.25rem;
+}
+	
+	#closepopup.close:hover {
+		background-color: #1bc5b3;
+		cursor: pointer;
+	}
+
+
+
+
+#closepopupLost.closeLost {
+	background-color: rgb(204,204,204);
+	border-radius: 50%;
+	display: block;
+	padding: .2em .5em;
+	position: absolute;
+	top: 1.25rem;
+	transition: all 400ms ease;
+	right: 1.25rem;
+}
+	
+	#closepopupLost.closeLost:hover {
+		background-color: #1bc5b3;
+		cursor: pointer;
+	}
+
+
+
+#closepopupprof.closeprof {
+	background-color: rgb(204,204,204);
+	border-radius: 50%;
+	display: block;
+	padding: .2em .5em;
+	position: absolute;
+	top: 1.25rem;
+	transition: all 400ms ease;
+	right: 1.25rem;
+}
+	
+	#closepopupprof.closeprof:hover {
+		background-color: #1bc5b3;
+		cursor: pointer;
+	}
+	
+#closepopuporder.closeorder {
+	background-color: rgb(204,204,204);
+	border-radius: 50%;
+	display: block;
+	padding: .2em .5em;
+	position: absolute;
+	top: 1.25rem;
+	transition: all 400ms ease;
+	right: 1.25rem;
+}
+	
+	#closepopuporder.closeorder:hover {
+		background-color: #1bc5b3;
+		cursor: pointer;
+	}	
+/*
+*	LOG-IN BOX
+*/
+div.overlay {
+	background-color: rgba(0,0,0,.25);
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 9999;
+}
+
+	div.overlay > div.login-wrapper {
+		align-self: center;
+		background-color: rgba(0,0,0,.25);
+		border-radius: 2px;
+		padding: 6px;
+		width: 700px;
+	}
+	
+		div.overlay > div.login-wrapper > div.login-content {
+			background-color: rgb(255,255,255);
+			border-radius: 2px;
+			padding: 24px;	
+			position: relative;
+		}
+		
+			div.overlay > div.login-wrapper > div.login-content > h3 {
+				color: rgb(0,0,0);
+				
+				margin: 0 0 1.25em;
+				padding: 0;
+			}
+			
+			
+			
+			
+div.overlayLost {
+	background-color: rgba(0,0,0,.25);
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 9999;
+}
+
+	div.overlayLost > div.login-wrapper {
+		align-self: center;
+		background-color: rgba(0,0,0,.25);
+		border-radius: 2px;
+		padding: 6px;
+		width: 700px;
+	}
+	
+		div.overlayLost > div.login-wrapper > div.login-content {
+			background-color: rgb(255,255,255);
+			border-radius: 2px;
+			padding: 24px;	
+			position: relative;
+		}
+		
+			div.overlayLost > div.login-wrapper > div.login-content > h3 {
+				color: rgb(0,0,0);
+				
+				margin: 0 0 1.25em;
+				padding: 0;
+			}
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+						
+div.overlayprof {
+	background-color: rgba(0,0,0,.25);
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 9999;
+}
+
+	div.overlayprof > div.login-wrapper {
+		align-self: center;
+		background-color: rgba(0,0,0,.25);
+		border-radius: 2px;
+		padding: 6px;
+		width: 700px;
+	}
+	
+		div.overlayprof > div.login-wrapper > div.login-content {
+			background-color: rgb(255,255,255);
+			border-radius: 2px;
+			padding: 24px;	
+			position: relative;
+		}
+		
+			div.overlayprof > div.login-wrapper > div.login-content > h3 {
+				color: rgb(0,0,0);
+				
+				margin: 0 0 1.25em;
+				padding: 0;
+			}
+			
+
+
+
+
+
+
+div.overlayorder {
+	background-color: rgba(0,0,0,.25);
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 9999;
+}
+
+	div.overlayorder > div.login-wrapper {
+		align-self: center;
+		background-color: rgba(0,0,0,.25);
+		border-radius: 2px;
+		padding: 6px;
+		width: 700px;
+	}
+	
+		div.overlayorder > div.login-wrapper > div.login-content {
+			background-color: rgb(255,255,255);
+			border-radius: 2px;
+			padding: 24px;	
+			position: relative;
+		}
+		
+			div.overlayorder > div.login-wrapper > div.login-content > h3 {
+				color: rgb(0,0,0);
+				
+				margin: 0 0 1.25em;
+				padding: 0;
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+/*
+*	FORM
+*/
+
+/* form label {
+	color: rgb(0,0,0);
+	display: block;	
+	margin: .75em 0;	
+} */
+
+/* 	form input[type="text"],
+	form input[type="password"],
+	form textarea {
+		background-color: rgb(255,255,255);
+		border: 1px solid rgb( 186, 186, 186 );
+		border-radius: 1px;
+		box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+		display: block;
+		
+		margin: 6px 0 12px 0;
+		padding: .25em .55em;	
+		text-shadow: 0 1px 1px rgba(255, 255, 255, 1);
+		transition: all 400ms ease;
+		width: 50%;
+	} */
+	
+	.loginfrm
+	{
+		background-color: rgb(255,255,255);
+		border: 1px solid rgb( 186, 186, 186 );
+		border-radius: 1px;
+		box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+		display: block;
+		
+		margin: 6px 0 12px 0;
+		padding: .25em .55em;	
+		text-shadow: 0 1px 1px rgba(255, 255, 255, 1);
+		transition: all 400ms ease;
+		width: 90%;
+	}
+	
+	
+	.signupfrm
+	{
+		background-color: rgb(255,255,255);
+		border: 1px solid rgb( 186, 186, 186 );
+		border-radius: 1px;
+		box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+		/* display: block; */ 
+		
+		margin: 6px 0 12px 0;
+		padding: .25em .55em;	
+		text-shadow: 0 1px 1px rgba(255, 255, 255, 1);
+		transition: all 400ms ease;
+		width: 90%;
+	}
+	
+	.captcha
+	{
+		background-color: rgb(255,255,255);
+		border: 1px solid rgb( 186, 186, 186 );
+		border-radius: 1px;
+		box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+		/* display: block; */ 
+		
+		margin: 6px 0 12px 0;
+		padding: .25em .55em;	
+		text-shadow: 0 1px 1px rgba(255, 255, 255, 1);
+		transition: all 400ms ease;
+		width: 60%;
+	}
+	
+	
+	form input[type="text"]:focus,
+
+	form input[type="password"]:focus,
+	form textarea:focus,
+	form select:focus { 
+		border-color: #4195fc;
+		box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 8px #4195fc;
+	}
+	
+		form input[type="text"]:invalid:focus,
+		form input[type="password"]:invalid:focus,
+		form textarea:invalid:focus,
+		form select:invalid:focus { 
+			border-color: yellow;
+			box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 8px rgb(248,250,0);
+		}
+	
+form button {
+	background-color: #ff4f4f;
+	border: 1px solid rgba(0,0,0,.1);
+	color: rgb(255,255,255);
+	
+	padding: .55em .9em;
+	transition: all 400ms ease;	
+}
+
+	form button:hover {
+		background-color: #1bc5b3;
+		cursor: pointer;
+	}
+
+
+
+.reset {
+	background-color: #ff4f4f;
+	border: 1px solid rgba(0,0,0,.1);
+	color: rgb(255,255,255);
+	
+	padding: .55em .9em;
+	transition: all 400ms ease;	
+}
+
+	.reset:hover {
+		background-color: #1bc5b3;
+		cursor: pointer;
+	}
+	
+.overlayLink {
+color: black;
+}	
+
+
+.overlayLinkLost {
+color: black;
+}	
+
+
+.overlayLinkprof {
+color: black;
+}
+
+
+
+.overlayLinkorder {
+color: black;
+}
+
+
+
+
+
+
+
+ .Table
+    {
+        display: table;
+    }
+    .Title
+    {
+        display: table-caption;
+        text-align: center;
+        font-weight: bold;
+        font-size: larger;
+    }
+    .Heading
+    {
+        display: table-row;
+        font-weight: bold;
+        text-align: center;
+    }
+    .Row
+    {
+        display: table-row;
+    }
+    .Cell
+    {
+        display: table-cell;
+      
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    
+    
+    
+    .visitor
+    {
+    text-align:right;
+    position: absolute;
+    bottom:20px
+    }
+    
+    
+    .grey 
+    {
+    color:lightblue;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+         
+        
+            /* jssor slider bullet navigator skin 05 css */
+            /*
+            .jssorb05 div           (normal)
+            .jssorb05 div:hover     (normal mouseover)
+            .jssorb05 .av           (active)
+            .jssorb05 .av:hover     (active mouseover)
+            .jssorb05 .dn           (mousedown)
+            */
+            .jssorb05 div, .jssorb05 div:hover, .jssorb05 .av {
+                background: url(../images/b05.png) no-repeat;
+                overflow: hidden;
+                cursor: pointer;
+            }
+
+            .jssorb05 div {
+                background-position: -7px -7px;
+            }
+
+                .jssorb05 div:hover, .jssorb05 .av:hover {
+                    background-position: -37px -7px;
+                }
+
+            .jssorb05 .av {
+                background-position: -67px -7px;
+            }
+
+            .jssorb05 .dn, .jssorb05 .dn:hover {
+                background-position: -97px -7px;
+            }
+        
+        
+        
+            /* jssor slider arrow navigator skin 12 css */
+            /*
+            .jssora12l              (normal)
+            .jssora12r              (normal)
+            .jssora12l:hover        (normal mouseover)
+            .jssora12r:hover        (normal mouseover)
+            .jssora12ldn            (mousedown)
+            .jssora12rdn            (mousedown)
+            */
+            .jssora12l, .jssora12r, .jssora12ldn, .jssora12rdn {
+                position: absolute;
+                cursor: pointer;
+                display: block;
+                background: url(../images/a12.png) no-repeat;
+                overflow: hidden;
+            }
+
+            .jssora12l {
+                background-position: -16px -37px;
+            }
+
+            .jssora12r {
+                background-position: -75px -37px;
+            }
+
+            .jssora12l:hover {
+                background-position: -136px -37px;
+            }
+
+            .jssora12r:hover {
+                background-position: -195px -37px;
+            }
+
+            .jssora12ldn {
+                background-position: -256px -37px;
+            }
+
+            .jssora12rdn {
+                background-position: -315px -37px;
+            }
+        

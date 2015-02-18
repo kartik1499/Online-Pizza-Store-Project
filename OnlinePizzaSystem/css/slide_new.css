@@ -1,0 +1,412 @@
+/*
+Name: Sliding Login Panel with jQuery 1.3.2
+Author: Jeremie Tisseau
+Author URI: http://web-kreation.com/
+Date: March 26, 2009
+Version: 1.0
+
+	Copyright 2009 Jeremie Tisseau
+	"Sliding Login Panel with jQuery 1.3.2" is distributed under the GNU General Public License version 3:
+	http://www.gnu.org/licenses/gpl-3.0.html
+*/
+
+/***** clearfix *****/
+.clear {clear: both;height: 0;line-height: 0;}
+.clearfix:after {content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.clearfix {display: inline-block;}
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+.clearfix {height: 1%;}
+.clearfix {display: block;}
+
+/* Panel Tab/button */
+.tab1 {
+
+  	background: url(../images/tab_b.png) repeat-x 0 0;
+	height: 42px;
+	position: relative;
+    top: 0;
+    z-index: 999;
+}
+
+.tab1 ul.login {
+	display: block;
+	position: relative;
+  	float: right;
+  	clear: right;
+  	height: 42px;
+	width: auto;
+  	font-weight: bold;
+	line-height: 42px;
+	margin: 0;
+	right: 150px;
+  	color: white;
+  	font-size: 80%;
+  		font-family: "Segoe UI Light", Arial, "Arial Unicode MS", Helvetica, Sans-Serif;
+	text-align: center;
+}
+
+
+
+.tab1 ul.login li.left {
+  	background: url(../images/tab_l.png) no-repeat left 0;
+  	height: 42px;
+	width: 30px;
+	padding: 0;
+	margin: 0;
+  	display: block;
+	float: left;
+}
+
+.tab1 ul.login li.right {
+  	background: url(../images/tab_r.png) no-repeat left 0;
+  	height: 42px;
+	width: 30px;
+	padding: 0;
+	margin: 0;
+  	display: block;
+	float: left;
+}
+
+.tab1 ul.login li {
+ 	text-align: left;
+  	padding: 0 6px;
+	display: block;
+	float: left;
+	height: 42px;
+  	background: url(../images/tab_m.png) repeat-x 0 0;
+}
+
+.tab1 ul.login li a {
+	color: #15ADFF;
+}
+
+.tab1 ul.login li a:hover {
+	color: white;
+}
+
+.tab1 .sep {color:rgb(245,251,255)}
+
+.tab1 a.open, .tab1 a.close {
+	height: 20px;
+	line-height: 20px !important;
+	padding-left: 30px !important;
+	cursor: pointer;
+	display: block;
+	position: relative;
+	top: 11px;
+}
+
+.tab1 a.open {background: url(../images/bt_open.png) no-repeat left 0;}
+.tab1 a.close {background: url(../images/bt_close.png) no-repeat left 0;}
+.tab1 a:hover.open {background: url(../images/bt_open.png) no-repeat left -19px;}
+.tab1 a:hover.close {background: url(../images/bt_close.png) no-repeat left -19px;}
+
+/* sliding panel */
+#toppanel {
+   position: absolute;   /*Panel will overlap  content */
+    /*position: relative;*/   /*Panel will "push" the content down */
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+   
+}
+
+#panel {
+	width: 100%;
+	height: 240px;
+	color: #fff;
+	background:rgb(17, 114, 184);
+	overflow: hidden;
+	position: relative;
+	z-index: 3;
+	display: none;
+	border-top-color: rgb(255, 243, 15); border-top-width: 5px; border-top-style: solid;
+}
+
+#panel h1 {
+	font-size: 1.6em;
+	height:24px;
+	line-height: 24px !important;
+	padding: 5px 0 10px;
+	margin: 0;
+	color: white;
+	vertical-align: middle;
+}
+
+#panel h2{
+	font-size: 1.2em;
+	padding: 10px 0 5px;
+	margin: 0;
+	color: white;
+}
+
+#panel p {
+	margin: 5px 0;
+	padding: 0;
+}
+
+#panel a {
+	text-decoration: none;
+	color:white;
+}
+
+#panel a:hover {
+	color:  #15ADFF;
+}
+
+#panel a-lost-pwd {
+	display: block;
+	float: left;
+}
+
+#panel .content {
+	width: 960px;
+	margin: 0 auto;
+	padding-top: 15px;
+	text-align: left;
+		font-family: "Segoe UI Light", Arial, "Arial Unicode MS", Helvetica, Sans-Serif;
+	font-size: 0.85em;
+}
+
+#panel .content .left {
+	width: 280px;
+	float: left;
+	padding: 0 15px;
+	border-left: 1px solid rgb(255, 243, 15);
+}
+
+#panel .content .right {
+	border-right: 1px solid rgb(255, 243, 15);
+	float: right;
+}
+
+#panel .content form {
+	margin: 0 0 10px 0;
+}
+
+#panel .content label {
+	float: left;
+	padding-top: 8px;
+	clear: both;
+	display: block;
+}
+
+
+#overlay {
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	 background-color: rgba(0, 0, 0, 0.7); 
+	cursor: pointer;
+}
+ 
+ 
+ .login-popup {
+	display: none;
+	background: rgb(245,251,255);
+	width:596px;
+	margin-left:-273px;
+	margin-top:-234px;
+	position:fixed;
+	left:50%;
+	top:50%;
+	z-index:9001;
+	border-color: #15ADFF; 
+	border-width: 2px; 
+	border-style: solid;
+	box-shadow: 5px 5px 5px #888888;
+}
+.login-popup .col1,
+.login-popup .col2 {
+	float: left;
+}
+.login-popup .close
+{
+	top: 0;
+	position: absolute;
+	right: 0;
+	width: 29px;
+	height: 31px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 15px;
+	line-height: 30px;
+	color: #fff;
+	background: rgb(17, 114, 184);
+	font-weight: bold;
+	display: block;
+	
+}
+.login-popup .close:hover {color: #eaeaea;}
+.login-popup .title {
+	background: rgb(17, 114, 184);
+	color: #fff;
+	font-size: 12px;
+	line-height: 20px;
+	font-weight: bold;
+	padding: 6px 10px 5px;
+}
+.login-popup .form label {
+	padding-bottom: 4px;
+	cursor: pointer;
+	display: table;
+	font-size: 11px;
+}
+.login-popup .form {
+	padding: 13px 16px;
+}
+.login-popup .form input[type="text"] {margin-right: 13px;}
+.login-popup .form input[type="text"],
+.login-popup .form input[type="password"] {
+	color: #666;
+	font-size: 12px;
+	padding: 4px 5px 4px;
+	background: #fcfcfc;
+	-webkit-box-shadow: 0 0 0 3px #f7f7f7;
+	-moz-box-shadow: 0 0 0 3px #f7f7f7;
+	box-shadow: 0 0 0 3px #f7f7f7;
+	width: 163px;
+}
+.login-popup .column.button {
+	padding: 13px 0 18px;
+	clear: both;
+	overflow: hidden;
+}
+.login-popup .column.button .enter {
+	float: left;
+	display: inline-block;
+	border: 1px solid #5e656b;
+	border-radius: 2px;
+	background: #7a8187;
+	background: -moz-linear-gradient(top,  #7a8187 0%, #72767c 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7a8187), color-stop(100%,#72767c));
+	background: -webkit-linear-gradient(top,  #7a8187 0%,#72767c 100%);
+	background: -o-linear-gradient(top,  #7a8187 0%,#72767c 100%);
+	background: -ms-linear-gradient(top,  #7a8187 0%,#72767c 100%);
+	background: linear-gradient(to bottom,  #7a8187 0%,#72767c 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7a8187', endColorstr='#72767c',GradientType=0 );
+	color: #fff;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 11px;
+	line-height: 14px;
+}
+.login-popup .column.button .enter span {
+	border-top: 1px solid #8b9196;
+	padding: 5px 16px 6px;
+	display: block;
+}
+.login-popup .column.button .enter:hover {background: #8b9196;}
+.login-popup .column.button .remember {
+	overflow: hidden;
+	padding: 5px 0 0 17px;
+}
+.login-popup .column.button .remember label {
+	vertical-align: middle;
+	display: inline;
+}
+.login-popup .extra-col {
+	overflow: hidden;
+	padding: 19px 0 0 19px;
+}
+.login-popup .extra-col ul {
+	margin: 0;
+}
+.login-popup .extra-col ul li {
+	font-size: 11px;
+	line-height: 17px;
+	list-style: none;
+} 
+.login-popup .extra-col ul li a {
+	color: #202020;
+	text-decoration: none;
+}
+.login-popup .extra-col ul li a:hover {
+	color: #e50700;
+}
+.login-popup .soc-login {padding-top: 14px;}
+.login-popup .soc-login .section-title {
+	font-size: 13px;
+	line-height: 16px;
+	font-weight: bold;
+	color: #535353;
+	margin-bottom: 6px;
+}
+.login-popup .soc-login .section-subtitle {
+	color: #9e9e9e;
+	font-size: 12px;
+	margin-bottom: 11px;
+}
+.login-popup .soc-login-links {
+	overflow: hidden;
+	margin: 0;
+}
+.login-popup .soc-login-links li {
+	float: left;
+	list-style: none;
+	font-size: 11px;
+	line-height: 14px;
+	font-weight: bold;
+}
+.login-popup .soc-login-links li + li {
+	margin-left: 9px;
+}
+.login-popup .soc-login-links li a {
+	text-decoration: none;
+	color: #fff;
+	border: 1px solid #1a88c1;
+	overflow: hidden;
+	border-radius: 4px;
+	display: inline-block;
+	background: #2db8ef;
+	background: -moz-linear-gradient(top,  #2db8ef 0%, #189ce0 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2db8ef), color-stop(100%,#189ce0));
+	background: -webkit-linear-gradient(top,  #2db8ef 0%,#189ce0 100%);
+	background: -o-linear-gradient(top,  #2db8ef 0%,#189ce0 100%);
+	background: -ms-linear-gradient(top,  #2db8ef 0%,#189ce0 100%);
+	background: linear-gradient(to bottom,  #2db8ef 0%,#189ce0 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2db8ef', endColorstr='#189ce0',GradientType=0 );
+}
+.login-popup .soc-login-links li em {
+	display: inline-block;
+	width: 26px;
+	height: 23px;
+	float: left;
+}
+
+.login-popup .soc-login-links li span {
+	display: inline-block;
+	float: left;
+	padding: 4px 9px 5px;
+	border-left: 1px solid #66cbf4;
+	border-top: 1px solid #67cbf4;
+}
+
+.login-popup .soc-login-links li.gp a {
+	background: #d94f2c;
+	background: -moz-linear-gradient(top,  #d94f2c 0%, #d34524 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d94f2c), color-stop(100%,#d34524));
+	background: -webkit-linear-gradient(top,  #d94f2c 0%,#d34524 100%);
+	background: -o-linear-gradient(top,  #d94f2c 0%,#d34524 100%);
+	background: -ms-linear-gradient(top,  #d94f2c 0%,#d34524 100%);
+	background: linear-gradient(to bottom,  #d94f2c 0%,#d34524 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d94f2c', endColorstr='#d34524',GradientType=0 );
+	border-color: #b84a38;
+}
+.login-popup .soc-login-links li.gp span {
+	border-top: 1px solid #e5866d;
+	border-left: 1px solid #e5866d;
+}
+.login-popup .soc-login-links li.gp a:hover span {
+	background: #cd4323;
+}

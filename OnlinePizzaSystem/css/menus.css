@@ -1,0 +1,105 @@
+@CHARSET "ISO-8859-1";
+
+
+/*===== nav style ======*/
+	#fdw nav select {
+	    display:none; /* this is just for the mobile display */
+	}
+	#fdw nav ul {
+	    display:block;
+	    z-index:999999;
+	}
+	#fdw nav ul li {
+	    display:inline-block;
+	    padding:50px 3px 10px;
+	    margin-left:30px;
+	    position:relative;
+	}
+	#fdw nav ul li a:link, #fdw nav ul li a:visited {
+	    color:#444;
+	    font:normal 20px 'Yanone Kaffeesatz', sans-serif;
+	    text-transform:uppercase;
+	    display:inline-block;
+	    position:relative;
+	}
+	#fdw nav ul li a:hover, #fdw nav ul li a:active {
+	    color:#e25d29;
+	    text-decoration:none;
+	}
+	#fdw nav ul li span {
+	    position:absolute;
+	    right:-12px;
+	    bottom:6px;
+	    width:7px;
+	    height:8px;
+	    margin:0 0 0 3px;
+	    float:right;
+	    display:block;
+	    background:url('images/nav_arrow.png') no-repeat left -8px;
+	    font:0/0 a;
+	}
+	#fdw nav ul li.current {
+	    border-bottom:2px solid #e25d29;
+	}
+	#fdw nav ul li.current a {
+	    color:#e25d29;
+	    /* cursor: default; */
+	}
+	#fdw nav ul li.current a span {
+	    background:url('../images/nav_arrow.png') no-repeat left 0;
+	}
+	#fdw nav ul li.current ul li a {
+	    cursor:pointer;
+	}
+	 
+	/*===== sub_menu Style =======*/
+	#fdw nav ul li ul.sub_menu {
+	    position:absolute;
+   top:90px;
+	    left:0;
+	    margin:0;
+	    padding:0;
+	    background:#fff;
+	    border:1px solid #ececec;
+	    border-top:5px solid #e25d29;
+	    display:none;
+	    z-index:999999;
+	    -moz-box-shadow: 0px 6px 7px #121012;
+	    -webkit-box-shadow: 0px 6px 7px #121012;
+	    box-shadow: 0px 6px 7px #121012;
+	}
+	#fdw nav ul li ul.sub_menu li.arrow_top {
+	    position:absolute;
+	    top:-12px;
+	    left:12px;
+	    width:20px;
+	    height:8px;
+	    display:block;
+	    border:none;
+	    background:url('images/arrow_top.png') no-repeat left top;
+	}
+	#fdw nav ul li ul.sub_menu li {
+	    float:none;
+	    margin:0;
+    padding:0;
+	    border-bottom:1px solid #ececec;
+	}
+	#fdw nav ul li ul.sub_menu li a {
+	    white-space: nowrap;
+	    width: 220px;
+	    padding:12px;
+	    font:13px Arial, tahoma, sans-serif;
+	    text-transform:capitalize;
+	    color:#777;	    
+	}
+	#fdw nav ul li ul.sub_menu li a:hover {
+	    background:#f9f9f9;
+	    color:#333;
+	}
+	#fdw nav ul li ul.sub_menu li a.subCurrent {
+	    color:#e25d29;
+	    cursor:default;
+	}
+	#fdw nav ul li ul.sub_menu li a.subCurrent:hover {
+	    background:none;
+	}

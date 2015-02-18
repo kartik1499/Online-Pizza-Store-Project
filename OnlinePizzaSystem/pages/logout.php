@@ -1,0 +1,11 @@
+<?php
+session_start();
+if(!empty($_SESSION['username']))
+{
+$_SESSION['username']='';
+$_SESSION['FIRST_NAME']='';
+$_SESSION['LAST_NAME']='';
+session_destroy();
+}
+header("Location:index.php");
+?>
